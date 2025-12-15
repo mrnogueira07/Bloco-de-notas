@@ -306,7 +306,7 @@ function App() {
 
   if (authLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
+      <div className="flex items-center justify-center h-screen bg-slate-950">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-500"></div>
       </div>
     );
@@ -319,9 +319,9 @@ function App() {
 
   // --- Render Main App ---
   return (
-    <div className="flex h-screen w-full bg-gray-50 overflow-hidden relative">
+    <div className="flex h-screen w-full bg-slate-950 overflow-hidden relative">
       <div className={`
-        fixed inset-0 z-20 md:static md:z-0 w-full md:w-80 lg:w-96 h-full transition-transform duration-300 bg-white
+        fixed inset-0 z-20 md:static md:z-0 w-full md:w-80 lg:w-96 h-full transition-transform duration-300 bg-slate-900
         ${!isMobileListVisible ? '-translate-x-full md:translate-x-0' : 'translate-x-0'}
       `}>
         <Sidebar
@@ -343,7 +343,7 @@ function App() {
         />
       </div>
 
-      <main className="flex-1 relative h-full w-full">
+      <main className="flex-1 relative h-full w-full bg-slate-950">
         <Editor
           activeNote={activeNote}
           onUpdateNote={handleUpdateNote}

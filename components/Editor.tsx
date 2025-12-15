@@ -19,8 +19,8 @@ export const Editor: React.FC<EditorProps> = ({
   // If there's no active note, show a placeholder state
   if (!activeNote) {
     return (
-      <div className={`flex-1 flex flex-col items-center justify-center bg-gray-50 p-8 text-center h-full transition-transform duration-300 ${isMobileListVisible ? 'translate-x-full absolute inset-0 md:translate-x-0 md:relative' : 'translate-x-0 relative'}`}>
-        <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-6 text-gray-400">
+      <div className={`flex-1 flex flex-col items-center justify-center bg-slate-950 p-8 text-center h-full transition-transform duration-300 ${isMobileListVisible ? 'translate-x-full absolute inset-0 md:translate-x-0 md:relative' : 'translate-x-0 relative'}`}>
+        <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mb-6 text-slate-600">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -28,8 +28,8 @@ export const Editor: React.FC<EditorProps> = ({
             <line x1="8" y1="14" x2="16" y2="14"></line>
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-gray-700 mb-2">Selecione uma nota</h2>
-        <p className="text-gray-500 max-w-md">
+        <h2 className="text-2xl font-bold text-slate-200 mb-2">Selecione uma nota</h2>
+        <p className="text-slate-500 max-w-md">
           Escolha uma nota na barra lateral para editar ou crie uma nova para começar suas anotações.
         </p>
       </div>
@@ -95,11 +95,11 @@ export const Editor: React.FC<EditorProps> = ({
   const isTrash = activeNote.isDeleted;
 
   return (
-    <div className={`flex-1 flex flex-col h-full bg-white transition-transform duration-300 z-10 ${isMobileListVisible ? 'translate-x-full absolute inset-0 md:relative md:translate-x-0' : 'translate-x-0 absolute inset-0 md:relative'}`}>
+    <div className={`flex-1 flex flex-col h-full bg-slate-950 transition-transform duration-300 z-10 ${isMobileListVisible ? 'translate-x-full absolute inset-0 md:relative md:translate-x-0' : 'translate-x-0 absolute inset-0 md:relative'}`}>
       
       {/* Trash Banner */}
       {isTrash && (
-        <div className="bg-red-50 text-red-700 px-6 py-3 flex items-center justify-between border-b border-red-100">
+        <div className="bg-red-900/30 text-red-400 px-6 py-3 flex items-center justify-between border-b border-red-900/50">
           <div className="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="3 6 5 6 21 6"></polyline>
@@ -109,7 +109,7 @@ export const Editor: React.FC<EditorProps> = ({
           </div>
           <button 
             onClick={onRestore}
-            className="text-sm font-medium underline hover:text-red-900"
+            className="text-sm font-medium underline hover:text-red-300"
           >
             Restaurar para editar
           </button>
@@ -117,18 +117,18 @@ export const Editor: React.FC<EditorProps> = ({
       )}
 
       {/* Editor Toolbar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900">
         <div className="flex items-center gap-2">
            {/* Mobile Back Button */}
           <button 
             onClick={onBack}
-            className="md:hidden mr-2 p-2 -ml-2 text-gray-500 hover:bg-gray-100 rounded-full"
+            className="md:hidden mr-2 p-2 -ml-2 text-slate-400 hover:bg-slate-800 rounded-full"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-          <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Editor</span>
+          <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Editor</span>
         </div>
 
         <div className="flex gap-2 relative">
@@ -153,7 +153,7 @@ export const Editor: React.FC<EditorProps> = ({
               onClick={() => setShowToneMenu(!showToneMenu)}
               disabled={!activeNote.content || isTrash || isChangingTone}
               isLoading={isChangingTone}
-              className="text-gray-700 hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200"
+              className="hover:bg-purple-900/30 hover:text-purple-300 hover:border-purple-800/50"
               title="Alterar tom do texto"
             >
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
@@ -176,15 +176,15 @@ export const Editor: React.FC<EditorProps> = ({
             {showToneMenu && (
               <>
                 <div className="fixed inset-0 z-30" onClick={() => setShowToneMenu(false)} />
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-1 z-40 flex flex-col animate-in fade-in zoom-in duration-200 origin-top-right">
-                   <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-50 mb-1">Reescrever como</div>
-                   <button onClick={() => handleToneChange('formal')} className="px-4 py-2 text-left hover:bg-gray-50 text-sm text-gray-700 flex items-center">
-                     <span className="w-2 h-2 rounded-full bg-slate-800 mr-2"></span> Formal
+                <div className="absolute top-full right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-1 z-40 flex flex-col animate-in fade-in zoom-in duration-200 origin-top-right">
+                   <div className="px-4 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-700 mb-1">Reescrever como</div>
+                   <button onClick={() => handleToneChange('formal')} className="px-4 py-2 text-left hover:bg-slate-700 text-sm text-slate-200 flex items-center">
+                     <span className="w-2 h-2 rounded-full bg-slate-400 mr-2"></span> Formal
                    </button>
-                   <button onClick={() => handleToneChange('professional')} className="px-4 py-2 text-left hover:bg-gray-50 text-sm text-gray-700 flex items-center">
-                      <span className="w-2 h-2 rounded-full bg-blue-600 mr-2"></span> Profissional
+                   <button onClick={() => handleToneChange('professional')} className="px-4 py-2 text-left hover:bg-slate-700 text-sm text-slate-200 flex items-center">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 mr-2"></span> Profissional
                    </button>
-                   <button onClick={() => handleToneChange('informal')} className="px-4 py-2 text-left hover:bg-gray-50 text-sm text-gray-700 flex items-center">
+                   <button onClick={() => handleToneChange('informal')} className="px-4 py-2 text-left hover:bg-slate-700 text-sm text-slate-200 flex items-center">
                       <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Informal
                    </button>
                 </div>
@@ -197,7 +197,7 @@ export const Editor: React.FC<EditorProps> = ({
             onClick={handleGrammarFix} 
             isLoading={isFixingGrammar}
             disabled={!activeNote.content || isTrash}
-            className="text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 hidden sm:flex"
+            className="hover:bg-blue-900/30 hover:text-blue-300 hover:border-blue-800/50 hidden sm:flex"
             title="Corrigir erros gramaticais"
           >
              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
@@ -211,7 +211,7 @@ export const Editor: React.FC<EditorProps> = ({
             onClick={handleEnhance} 
             isLoading={isEnhancing}
             disabled={!activeNote.content || isTrash}
-            className="text-amber-600 border-amber-200 hover:bg-amber-50"
+            className="text-amber-500 border-amber-900/50 hover:bg-amber-900/20"
             title="Reescrever e melhorar texto"
           >
              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
@@ -230,19 +230,19 @@ export const Editor: React.FC<EditorProps> = ({
           readOnly={!!isTrash}
           onChange={(e) => onUpdateNote(activeNote.id, { title: e.target.value })}
           placeholder="Título da Nota"
-          className={`w-full text-3xl md:text-4xl font-bold text-gray-800 placeholder-gray-300 border-none outline-none bg-transparent mb-6 ${isTrash ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-full text-3xl md:text-4xl font-bold text-slate-100 placeholder-slate-700 border-none outline-none bg-transparent mb-6 ${isTrash ? 'opacity-50 cursor-not-allowed' : ''}`}
         />
         <textarea
           value={activeNote.content}
           readOnly={!!isTrash}
           onChange={(e) => onUpdateNote(activeNote.id, { content: e.target.value })}
           placeholder="Comece a escrever sua nota aqui..."
-          className={`w-full h-[calc(100%-80px)] resize-none text-lg text-gray-600 leading-relaxed border-none outline-none bg-transparent placeholder-gray-300 ${isTrash ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-full h-[calc(100%-80px)] resize-none text-lg text-slate-300 leading-relaxed border-none outline-none bg-transparent placeholder-slate-700 ${isTrash ? 'opacity-50 cursor-not-allowed' : ''}`}
         />
       </div>
       
       {/* Footer Info */}
-      <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 text-xs text-gray-400 flex justify-between items-center">
+      <div className="px-6 py-3 bg-slate-900 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
         <span>{activeNote.content.length} caracteres</span>
         <span>Última edição: {new Intl.DateTimeFormat('pt-BR', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(activeNote.updatedAt))}</span>
       </div>

@@ -83,11 +83,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <div className={`flex flex-col h-full bg-white border-r border-gray-200 ${className}`}>
+    <div className={`flex flex-col h-full bg-slate-900 border-r border-slate-800 ${className}`}>
       {/* Header */}
-      <div className="p-4 border-b border-gray-100 bg-gray-50/50">
+      <div className="p-4 border-b border-slate-800 bg-slate-900">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+          <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-500">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
@@ -118,22 +118,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
             placeholder={currentView === 'active' ? "Buscar notas..." : "Buscar na lixeira..."}
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm"
+            className="w-full pl-9 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm"
           />
-          <svg className="absolute left-3 top-2.5 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="absolute left-3 top-2.5 text-slate-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
         </div>
 
         {/* View Toggles */}
-        <div className="flex p-1 bg-gray-200 rounded-lg">
+        <div className="flex p-1 bg-slate-800 rounded-lg border border-slate-700">
           <button
             onClick={() => onViewChange('active')}
             className={`flex-1 flex items-center justify-center py-1.5 text-xs font-medium rounded-md transition-all ${
               currentView === 'active' 
-                ? 'bg-white text-gray-900 shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'bg-slate-700 text-slate-100 shadow-sm' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Minhas Notas
@@ -142,8 +142,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => onViewChange('trash')}
             className={`flex-1 flex items-center justify-center py-1.5 text-xs font-medium rounded-md transition-all ${
               currentView === 'trash' 
-                ? 'bg-white text-red-600 shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'bg-slate-700 text-red-400 shadow-sm' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Lixeira
@@ -154,7 +154,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Note List */}
       <div className="flex-1 overflow-y-auto">
         {notes.length === 0 ? (
-          <div className="p-8 text-center text-gray-400">
+          <div className="p-8 text-center text-slate-500">
             <p className="text-sm">
               {currentView === 'active' 
                 ? 'Nenhuma nota encontrada.' 
@@ -162,7 +162,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </p>
           </div>
         ) : (
-          <ul className="divide-y divide-gray-50">
+          <ul className="divide-y divide-slate-800">
             {notes.map((note) => (
               <li key={note.id}>
                 <div
@@ -174,24 +174,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       onSelectNote(note.id);
                     }
                   }}
-                  className={`w-full text-left p-4 hover:bg-gray-50 transition-colors group relative cursor-pointer outline-none ${
+                  className={`w-full text-left p-4 hover:bg-slate-800 transition-colors group relative cursor-pointer outline-none ${
                     activeNoteId === note.id 
-                      ? currentView === 'active' ? 'bg-amber-50 border-l-4 border-amber-500' : 'bg-red-50 border-l-4 border-red-500' 
+                      ? currentView === 'active' ? 'bg-slate-800 border-l-4 border-amber-500' : 'bg-red-900/10 border-l-4 border-red-500' 
                       : 'border-l-4 border-transparent'
                   }`}
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className={`font-medium truncate pr-6 ${activeNoteId === note.id ? 'text-gray-900' : 'text-gray-800'}`}>
+                    <h3 className={`font-medium truncate pr-6 ${activeNoteId === note.id ? 'text-amber-500' : 'text-slate-200'}`}>
                       {note.title || 'Sem título'}
                     </h3>
                   </div>
-                  <p className="text-xs text-gray-400 mb-2">{formatDate(note.updatedAt)}</p>
-                  <p className="text-sm text-gray-500 line-clamp-2 h-10 leading-relaxed">
+                  <p className="text-xs text-slate-500 mb-2">{formatDate(note.updatedAt)}</p>
+                  <p className="text-sm text-slate-400 line-clamp-2 h-10 leading-relaxed">
                     {note.content || <span className="italic opacity-50">Sem conteúdo...</span>}
                   </p>
 
                   {/* Actions Container */}
-                  <div className={`absolute top-4 right-2 flex gap-1 z-10 bg-white/90 rounded-md shadow-sm opacity-0 group-hover:opacity-100 ${activeNoteId === note.id ? 'opacity-100' : ''}`}>
+                  <div className={`absolute top-4 right-2 flex gap-1 z-10 bg-slate-800/90 rounded-md shadow-sm opacity-0 group-hover:opacity-100 ${activeNoteId === note.id ? 'opacity-100' : ''}`}>
                     
                     {currentView === 'active' ? (
                       // Action: Move to Trash
@@ -200,7 +200,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           e.stopPropagation();
                           onDeleteNote(note.id);
                         }}
-                        className="p-1.5 rounded-md text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="p-1.5 rounded-md text-slate-400 hover:text-red-400 hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
                         title="Mover para lixeira"
                       >
                         <svg className="pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -216,7 +216,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             e.stopPropagation();
                             onRestoreNote(note.id);
                           }}
-                          className="p-1.5 rounded-md text-gray-400 hover:text-green-600 hover:bg-green-50 transition-all focus:outline-none focus:ring-2 focus:ring-green-500"
+                          className="p-1.5 rounded-md text-slate-400 hover:text-green-400 hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-green-500"
                           title="Restaurar nota"
                         >
                           <svg className="pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -229,7 +229,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             e.stopPropagation();
                             onPermanentDelete(note.id);
                           }}
-                          className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
+                          className="p-1.5 rounded-md text-slate-400 hover:text-red-400 hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
                           title="Excluir permanentemente"
                         >
                           <svg className="pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -249,7 +249,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* User Footer */}
       {user && (
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
+        <div className="p-4 border-t border-slate-800 bg-slate-900">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <input 
@@ -268,7 +268,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <img 
                     src={user.avatarUrl} 
                     alt="Perfil" 
-                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
+                    className="w-10 h-10 rounded-full object-cover border border-slate-700"
                   />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm">
@@ -277,7 +277,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 )}
                 
                 {/* Overlay for upload indication */}
-                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-black bg-opacity-60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   {isUploading ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
@@ -290,13 +290,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
               
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-gray-900 truncate max-w-[120px]">{user.name}</span>
-                <span className="text-xs text-gray-500 truncate max-w-[120px]">{user.email}</span>
+                <span className="text-sm font-medium text-slate-200 truncate max-w-[120px]">{user.name}</span>
+                <span className="text-xs text-slate-500 truncate max-w-[120px]">{user.email}</span>
               </div>
             </div>
             <button 
               onClick={onLogout}
-              className="p-2 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+              className="p-2 text-slate-500 hover:text-red-400 rounded-lg hover:bg-red-900/20 transition-colors"
               title="Sair"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
